@@ -1,0 +1,41 @@
+{
+  "apiKeys": {
+    "omdb": "trilogy",
+    "tmdb": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZGQyMjE5Yjk4MWNmZGYzY2E4NjNiNzk2MjdiNTkwYSIsInN1YiI6IjY1YjZkNzBiMmIzYzRjMDE3YzZkNjFiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.bGEMoD-fjJPFYR_7GUFnEbMwFDqCUFuZ6jbx4C3jnPM",
+    "aftership": "your-aftership-api-key-here",
+    "opencage": "your-opencage-api-key-here"
+  },
+  "apiEndpoints": {
+    "omdb": "https://www.omdbapi.com/",
+    "tmdb": "https://api.themoviedb.org/3",
+    "tmdbImage": "https://image.tmdb.org/t/p/w500",
+    "aftership": "https://api.aftership.com/v4",
+    "opencage": "https://api.opencagedata.com/geocode/v1",
+    "openFoodFacts": "https://world.openfoodfacts.org/api/v2",
+    "exchangeRate": "https://api.exchangerate.host/live"
+  },
+  "settings": {
+    "movie": {
+      "defaultSearchLimit": 10,
+      "trendingCount": 12,
+      "cacheExpiry": 3600000
+    },
+    "shipping": {
+      "demoMode": true,
+      "refreshInterval": 1800000,
+      "maxPackages": 50
+    },
+    "shopping": {
+      "defaultBudget": 200,
+      "defaultCurrency": "USD",
+      "maxItems": 100,
+      "categories": ["groceries", "electronics", "clothing", "health", "home", "other"]
+    }
+  },
+  "features": {
+    "enableNotifications": true,
+    "enableAnimations": true,
+    "enableDarkMode": true,
+    "enableExport": false
+  }
+}

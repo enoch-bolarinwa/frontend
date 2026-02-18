@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Track movies you want to watch and movies you've seen. Browse trending films and manage your personal watchlist.">
+  <meta name="keywords" content="movie tracker, watchlist, films, cinema, trending movies">
+  <meta property="og:title" content="Movie Tracker — TrackHub">
+  <meta property="og:description" content="Manage your personal movie watchlist. Search any title, browse trending films, and log what you've seen.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#090c14">
+
+  <title>Movie Tracker — TrackHub</title>
+
+ 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/movie.css">
+</head>
+<body>
+
+  <a class="sr-only" href="#main-content" style="position:absolute;top:-40px;left:0;background:var(--clr-accent);color:var(--clr-bg);padding:8px;z-index:9999;border-radius:0 0 4px 0;transition:top 0.2s"
+     onfocus="this.style.top='0'" onblur="this.style.top='-40px'">Skip to main content</a>
+
+ 
+  <header class="site-header" role="banner">
+    <div class="wrapper">
+      <a href="index.html" class="site-logo" aria-label="TrackHub home">Track<span>Hub</span></a>
+      <nav class="site-nav" role="navigation" aria-label="Main navigation">
+        <a href="movie.html"    class="nav-link active" aria-current="page">🎬 Movies</a>
+        <a href="shipping.html" class="nav-link">📦 Shipping</a>
+        <a href="shopping.html" class="nav-link">🛒 Shopping</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="wrapper">
+
+      <!-- Hero -->
+      <section class="page-hero" aria-labelledby="hero-title">
+        <p class="hero-badge" aria-hidden="true">🎬 Movie Tracker</p>
+        <h1 class="hero-title" id="hero-title">Your Personal <span class="accent">Cinema</span> Log</h1>
+        <p class="hero-subtitle">Search any movie, browse trending picks, and manage your watchlist — all in one place.</p>
+      </section>
+
+      <!-- Search Section -->
+      <section class="search-section card" aria-labelledby="search-heading">
+        <div class="card-header">
+          <div class="card-icon" aria-hidden="true">🔍</div>
+          <div>
+            <h2 class="card-title" id="search-heading">Search Movies</h2>
+            <p class="card-subtitle">Powered by OMDB API</p>
+          </div>
+        </div>
+
+        <form id="search-form" role="search" aria-label="Search for a movie">
+          <div class="input-group">
+            <label for="search-input" class="sr-only">Movie title</label>
+            <input
+              type="search"
+              id="search-input"
+              class="input-field"
+              placeholder="Search by title, e.g. &quot;Inception&quot;…"
+              autocomplete="off"
+              aria-label="Search by movie title"
+              spellcheck="false"
+            >
+            <button type="submit" class="btn btn-primary" aria-label="Search movies">
+              Search
+            </button>
+            <button type="button" id="clear-search-btn" class="btn btn-secondary" aria-label="Clear search and show trending">
+              Clear
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Trending Label -->
+      <section id="trending-section" aria-label="Trending movies this week">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-lg)">
+          <h2 style="font-family:var(--font-display);font-weight:800;font-size:1.4rem;letter-spacing:-0.02em">
+            🔥 Trending This Week
+          </h2>
+          <p style="font-size:0.75rem;color:var(--clr-text-muted)">via TMDB</p>
+        </div>
+
+        <!-- Movie Grid (dynamically populated) -->
+        <div id="movie-grid" class="movie-grid" role="list" aria-label="Movie results" aria-live="polite"></div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- Watchlist Panel -->
+      <section class="watchlist-panel" aria-labelledby="watchlist-heading">
+        <div class="watchlist-header">
+          <h2 class="watchlist-title" id="watchlist-heading">📋 My Watchlist</h2>
+          <div class="watchlist-stats" role="list" aria-label="Watchlist statistics">
+            <span class="stat-chip" role="listitem">Total: <strong id="stat-total" aria-live="polite">0</strong></span>
+            <span class="stat-chip" role="listitem">Watched: <strong id="stat-watched" aria-live="polite">0</strong></span>
+            <span class="stat-chip" role="listitem">Pending: <strong id="stat-pending" aria-live="polite">0</strong></span>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs" role="tablist" aria-label="Filter watchlist by status">
+          <button class="tab-btn active" data-tab="all"       role="tab" aria-selected="true"  aria-controls="watchlist-container">All</button>
+          <button class="tab-btn"        data-tab="watchlist" role="tab" aria-selected="false" aria-controls="watchlist-container">To Watch</button>
+          <button class="tab-btn"        data-tab="watched"   role="tab" aria-selected="false" aria-controls="watchlist-container">Watched</button>
+        </div>
+
+        <!-- Watchlist content (dynamically populated) -->
+        <div id="watchlist-container" role="tabpanel" aria-live="polite" aria-label="Watchlist entries"></div>
+
+        <!-- Empty state -->
+        <div id="watchlist-empty" class="empty-state" aria-live="polite">
+          <p class="empty-state-icon" aria-hidden="true">🎬</p>
+          <p class="empty-state-title">Your watchlist is empty</p>
+          <p class="empty-state-text">Search for movies or browse trending picks above to add them here.</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ─── Footer ─── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrapper">
+      <p>TrackHub Movie Tracker &mdash; Data by <a href="https://www.omdbapi.com/" target="_blank" rel="noopener noreferrer">OMDB API</a> &amp; <a href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer">TMDB</a></p>
+    </div>
+  </footer>
+
+  <!-- ─── Scripts (ES Modules) ─── -->
+  <script type="module" src="js/modules/movie.js"></script>
+</body>
+</html>

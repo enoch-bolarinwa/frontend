@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Track your packages and shipments in real time. Add tracking numbers from UPS, FedEx, USPS, DHL and more to monitor delivery status.">
+  <meta name="keywords" content="package tracker, shipping tracker, parcel tracking, UPS, FedEx, USPS, DHL tracking">
+  <meta property="og:title" content="Shipping Tracker — TrackHub">
+  <meta property="og:description" content="Monitor all your packages in one place. Real-time tracking for UPS, FedEx, USPS, DHL, and more.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#090c14">
+
+  <title>Shipping Tracker</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/shipping.css">
+</head>
+<body>
+
+  <a class="sr-only" href="#main-content"
+     style="position:absolute;top:-40px;left:0;background:var(--clr-accent);color:var(--clr-bg);padding:8px;z-index:9999;border-radius:0 0 4px 0;transition:top 0.2s"
+     onfocus="this.style.top='0'" onblur="this.style.top='-40px'">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="wrapper">
+      <a href="index.html" class="site-logo" aria-label="TrackHub home">Track<span>Hub</span></a>
+      <nav class="site-nav" role="navigation" aria-label="Main navigation">
+        <a href="movie.html"    class="nav-link">🎬 Movies</a>
+        <a href="shipping.html" class="nav-link active" aria-current="page">📦 Shipping</a>
+        <a href="shopping.html" class="nav-link">🛒 Shopping</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="wrapper">
+
+      <!-- Hero -->
+      <section class="page-hero" aria-labelledby="hero-title">
+        <p class="hero-badge" aria-hidden="true">📦 Shipping Tracker</p>
+        <h1 class="hero-title" id="hero-title">Track Every <span class="accent">Package</span></h1>
+        <p class="hero-subtitle">Add tracking numbers from any major carrier and monitor your deliveries in real time.</p>
+      </section>
+
+      <!-- Stats Row (dynamic) -->
+      <section class="stats-row" aria-label="Shipment statistics">
+        <div class="stat-card" role="region" aria-label="Total packages tracked">
+          <p class="stat-card-label">Total Tracked</p>
+          <p class="stat-card-value" id="stat-total" aria-live="polite">0</p>
+          <span class="stat-card-icon" aria-hidden="true">📦</span>
+        </div>
+        <div class="stat-card" role="region" aria-label="Packages in transit">
+          <p class="stat-card-label">In Transit</p>
+          <p class="stat-card-value" id="stat-in-transit" aria-live="polite">0</p>
+          <span class="stat-card-icon" aria-hidden="true">🚚</span>
+        </div>
+        <div class="stat-card" role="region" aria-label="Packages delivered">
+          <p class="stat-card-label">Delivered</p>
+          <p class="stat-card-value" id="stat-delivered" aria-live="polite">0</p>
+          <span class="stat-card-icon" aria-hidden="true">✅</span>
+        </div>
+      </section>
+
+      
+      <div class="tracking-layout">
+
+        <!-- Add Package Form -->
+        <section class="card" aria-labelledby="add-form-heading">
+          <div class="card-header">
+            <div class="card-icon" aria-hidden="true">➕</div>
+            <div>
+              <h2 class="card-title" id="add-form-heading">Track a Package</h2>
+              <p class="card-subtitle">AfterShip + OpenCage APIs</p>
+            </div>
+          </div>
+
+          <form id="add-package-form" novalidate aria-label="Add a package to track">
+            <!-- Carrier Selector -->
+            <fieldset style="border:none;margin-bottom:var(--space-md)">
+              <legend class="input-label">Select Carrier</legend>
+              <div class="carrier-grid" role="group" aria-label="Choose your carrier">
+                <button type="button" class="carrier-btn selected" data-carrier-btn="ups"    aria-pressed="true"  aria-label="UPS">
+                  <span class="carrier-btn-icon" aria-hidden="true">🟫</span>
+                  <span class="carrier-btn-name">UPS</span>
+                </button>
+                <button type="button" class="carrier-btn" data-carrier-btn="fedex"   aria-pressed="false" aria-label="FedEx">
+                  <span class="carrier-btn-icon" aria-hidden="true">🟣</span>
+                  <span class="carrier-btn-name">FedEx</span>
+                </button>
+                <button type="button" class="carrier-btn" data-carrier-btn="usps"    aria-pressed="false" aria-label="USPS">
+                  <span class="carrier-btn-icon" aria-hidden="true">🦅</span>
+                  <span class="carrier-btn-name">USPS</span>
+                </button>
+                <button type="button" class="carrier-btn" data-carrier-btn="dhl"     aria-pressed="false" aria-label="DHL">
+                  <span class="carrier-btn-icon" aria-hidden="true">🟡</span>
+                  <span class="carrier-btn-name">DHL</span>
+                </button>
+                <button type="button" class="carrier-btn" data-carrier-btn="amazon"  aria-pressed="false" aria-label="Amazon">
+                  <span class="carrier-btn-icon" aria-hidden="true">📦</span>
+                  <span class="carrier-btn-name">Amazon</span>
+                </button>
+                <button type="button" class="carrier-btn" data-carrier-btn="ontrac"  aria-pressed="false" aria-label="OnTrac">
+                  <span class="carrier-btn-icon" aria-hidden="true">🔵</span>
+                  <span class="carrier-btn-name">OnTrac</span>
+                </button>
+              </div>
+            </fieldset>
+
+            <!-- Tracking Number -->
+            <div class="input-group stacked" style="margin-bottom:var(--space-md)">
+              <label for="tracking-input" class="input-label">Tracking Number <abbr title="required">*</abbr></label>
+              <input
+                type="text"
+                id="tracking-input"
+                class="input-field"
+                placeholder="e.g. 1Z999AA10123456784"
+                autocomplete="off"
+                spellcheck="false"
+                required
+                aria-required="true"
+                aria-describedby="tracking-hint"
+              >
+              <p id="tracking-hint" style="font-size:0.7rem;color:var(--clr-text-muted);margin-top:4px">
+                Enter the full tracking number from your confirmation email.
+              </p>
+            </div>
+
+            <!-- Package Label -->
+            <div class="input-group stacked" style="margin-bottom:var(--space-lg)">
+              <label for="label-input" class="input-label">Package Label (optional)</label>
+              <input
+                type="text"
+                id="label-input"
+                class="input-field"
+                placeholder="e.g. New Laptop, Gift for Mom…"
+                autocomplete="off"
+                maxlength="60"
+              >
+            </div>
+
+            <button type="submit" id="add-package-btn" class="btn btn-primary btn-lg" style="width:100%">
+              🔍 Track Package
+            </button>
+
+            <!-- Demo Mode Notice -->
+            <p style="font-size:0.7rem;color:var(--clr-text-muted);margin-top:var(--space-md);text-align:center;line-height:1.5">
+              ⚡ Demo mode active — using simulated tracking data.
+              <br>Set <code>DEMO_MODE = false</code> and add your AfterShip API key for live tracking.
+            </p>
+          </form>
+
+          <!-- Map Widget -->
+          <div class="map-placeholder" aria-label="Package location map (simulated)" role="img">
+            <div class="map-dot" aria-hidden="true"></div>
+            <p style="position:relative;z-index:1;font-size:0.75rem">📍 Live map with OpenCage geocoding in production</p>
+          </div>
+        </section>
+
+        <!-- Active Shipments Panel -->
+        <section class="shipments-panel" aria-labelledby="shipments-heading">
+          <div class="panel-header">
+            <h2 class="panel-title" id="shipments-heading">Active Shipments</h2>
+            <button id="clear-all-btn" class="btn btn-danger btn-sm" aria-label="Remove all tracked packages">
+              Clear All
+            </button>
+          </div>
+
+          <!-- Package list (dynamic) -->
+          <div id="shipment-list" class="shipment-list" aria-live="polite" aria-label="Your tracked packages"></div>
+
+          <!-- Empty state -->
+          <div id="shipments-empty" class="empty-state">
+            <p class="empty-state-icon" aria-hidden="true">📭</p>
+            <p class="empty-state-title">No packages tracked yet</p>
+            <p class="empty-state-text">Enter a tracking number to the left and we'll monitor it for you.</p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrapper">
+      <p>TrackHub Shipping Tracker &mdash; Tracking via <a href="https://www.aftership.com/" target="_blank" rel="noopener noreferrer">AfterShip API</a> &amp; Geocoding via <a href="https://opencagedata.com/" target="_blank" rel="noopener noreferrer">OpenCage</a></p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/modules/shipping.js"></script>
+</body>
+</html>

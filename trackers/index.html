@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TrackHub — Your all-in-one tracking dashboard. Track movies, shipping packages, and shopping lists with real-time data.">
+  <meta name="keywords" content="tracker, movie tracker, shipping tracker, shopping list, package tracking, watchlist">
+  <meta property="og:title" content="TrackHub — Track Everything">
+  <meta property="og:description" content="Your personal dashboard for tracking movies, packages, and shopping. Powered by multiple real-time APIs.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#090c14">
+
+  <title>TrackHub</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="stylesheet" href="css/shared.css">
+
+  <style>
+    /* Landing page specific styles */
+    .landing-hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-3xl) var(--space-lg);
+      position: relative;
+    }
+
+    .landing-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(ellipse at 30% 40%, rgba(0,229,255,0.1) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 60%, rgba(123,97,255,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .landing-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(3rem, 8vw, 7rem);
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      margin-bottom: var(--space-xl);
+      position: relative;
+    }
+
+    .landing-title .line-1 { display: block; color: var(--clr-text); }
+    .landing-title .line-2 { display: block; color: var(--clr-accent); }
+
+    .landing-description {
+      font-size: 1.1rem;
+      color: var(--clr-text-muted);
+      max-width: 500px;
+      margin: 0 auto var(--space-2xl);
+      line-height: 1.7;
+    }
+
+    .landing-cta-row {
+      display: flex;
+      gap: var(--space-md);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* App cards grid */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-xl);
+      padding: var(--space-3xl) 0;
+    }
+
+    .app-card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      transition: transform var(--duration-mid) var(--ease-spring),
+                  border-color var(--duration-mid),
+                  box-shadow var(--duration-mid);
+      position: relative;
+      overflow: hidden;
+      animation: fadeSlideUp 0.6s var(--ease-out) both;
+    }
+
+    .app-card:nth-child(1) { animation-delay: 0.1s; }
+    .app-card:nth-child(2) { animation-delay: 0.2s; }
+    .app-card:nth-child(3) { animation-delay: 0.3s; }
+
+    .app-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 20%, var(--card-glow, rgba(0,229,255,0.06)) 0%, transparent 60%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity var(--duration-mid);
+    }
+
+    .app-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0,229,255,0.25);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5), var(--shadow-glow);
+    }
+
+    .app-card:hover::before { opacity: 1; }
+
+    .app-card:focus-visible {
+      outline: 2px solid var(--clr-accent);
+      outline-offset: 4px;
+    }
+
+    .app-card-1 { --card-glow: rgba(0,229,255,0.08); }
+    .app-card-2 { --card-glow: rgba(123,97,255,0.08); }
+    .app-card-3 { --card-glow: rgba(255,209,102,0.06); }
+
+    .app-emoji {
+      font-size: 3rem;
+      display: block;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .app-card:nth-child(2) .app-emoji { animation-delay: 0.5s; }
+    .app-card:nth-child(3) .app-emoji { animation-delay: 1s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    .app-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.6rem;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .app-description {
+      color: var(--clr-text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .app-apis {
+      display: flex;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .api-chip {
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: var(--radius-xl);
+      background: rgba(0,229,255,0.06);
+      border: 1px solid rgba(0,229,255,0.2);
+      color: var(--clr-accent);
+      font-weight: 700;
+    }
+
+    .app-card-arrow {
+      margin-top: auto;
+      font-size: 0.8rem;
+      color: var(--clr-text-muted);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      transition: color var(--duration-fast), gap var(--duration-fast);
+    }
+
+    .app-card:hover .app-card-arrow {
+      color: var(--clr-accent);
+      gap: var(--space-md);
+    }
+
+    /* Feature list */
+    .features-section {
+      padding: var(--space-2xl) 0;
+      border-top: 1px solid var(--clr-border);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-xl);
+      margin-top: var(--space-xl);
+    }
+
+    .feature-item {
+      text-align: center;
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: var(--space-md);
+    }
+
+    .feature-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .feature-desc {
+      font-size: 0.8rem;
+      color: var(--clr-text-muted);
+      line-height: 1.6;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--clr-text-muted);
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+
+    @media (max-width: 600px) {
+      .landing-title { font-size: 3rem; }
+      .apps-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Animated counter on hero */
+    .live-counter {
+      display: flex;
+      gap: var(--space-2xl);
+      justify-content: center;
+      margin-top: var(--space-2xl);
+      flex-wrap: wrap;
+    }
+
+    .counter-item { text-align: center; }
+
+    .counter-value {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 2.5rem;
+      letter-spacing: -0.03em;
+      color: var(--clr-accent);
+      display: block;
+    }
+
+    .counter-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clr-text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Skip link -->
+  <a href="#main-content"
+     style="position:absolute;top:-40px;left:0;background:var(--clr-accent);color:var(--clr-bg);padding:8px;z-index:9999;border-radius:0 0 4px 0;transition:top 0.2s"
+     onfocus="this.style.top='0'" onblur="this.style.top='-40px'">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="wrapper">
+      <span class="site-logo" aria-label="TrackHub">Track<span>Hub</span></span>
+      <nav class="site-nav" role="navigation" aria-label="Main navigation">
+        <a href="movie.html"    class="nav-link">🎬 Movies</a>
+        <a href="shipping.html" class="nav-link">📦 Shipping</a>
+        <a href="shopping.html" class="nav-link">🛒 Shopping</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Landing Hero -->
+    <section class="landing-hero" aria-labelledby="landing-title">
+      <div class="wrapper" style="position:relative">
+        <span class="hero-badge" aria-hidden="true">✦ Three trackers in one</span>
+
+        <h1 class="landing-title" id="landing-title">
+          <span class="line-1">Track</span>
+          <span class="line-2">Everything.</span>
+        </h1>
+
+        <p class="landing-description">
+          Hub for your movies, packages, and shopping lists.
+          It has multiple real-time APIs with no account required.
+        </p>
+
+        <div class="landing-cta-row">
+          <a href="movie.html" class="btn btn-primary btn-lg" aria-label="Open Movie Tracker">🎬 Movies</a>
+          <a href="shipping.html" class="btn btn-secondary btn-lg" aria-label="Open Shipping Tracker">📦 Shipping</a>
+          <a href="shopping.html" class="btn btn-secondary btn-lg" aria-label="Open Shopping Tracker">🛒 Shopping</a>
+        </div>
+
+        
+        <div class="live-counter" id="live-counters" aria-label="Tracker statistics">
+          <div class="counter-item">
+            <span class="counter-value" id="cnt-movies" aria-label="Movies in watchlist">0</span>
+            <span class="counter-label">Movies tracked</span>
+          </div>
+          <div class="counter-item">
+            <span class="counter-value" id="cnt-packages" aria-label="Packages tracked">0</span>
+            <span class="counter-label">Packages tracked</span>
+          </div>
+          <div class="counter-item">
+            <span class="counter-value" id="cnt-items" aria-label="Shopping items">0</span>
+            <span class="counter-label">Shopping items</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrapper">
+
+      <!-- App Cards -->
+      <section aria-labelledby="apps-heading">
+        <p class="section-label" id="apps-heading">Your Trackers</p>
+
+        <div class="apps-grid" role="list">
+
+          <!-- Movie Tracker -->
+          <a href="movie.html" class="app-card app-card-1" role="listitem" aria-label="Open Movie Tracker">
+            <span class="app-emoji" aria-hidden="true">🎬</span>
+            <div>
+              <h2 class="app-title">Movie Tracker</h2>
+              <p class="app-description">Browse trending films, search any title, and manage a personal watchlist with watched/unwatched status.</p>
+            </div>
+            <div class="app-apis" aria-label="APIs used">
+              <span class="api-chip">OMDB API</span>
+              <span class="api-chip">TMDB API</span>
+            </div>
+            <span class="app-card-arrow" aria-hidden="true">Open tracker →</span>
+          </a>
+
+          <!-- Shipping Tracker -->
+          <a href="shipping.html" class="app-card app-card-2" role="listitem" aria-label="Open Shipping Tracker">
+            <span class="app-emoji" aria-hidden="true">📦</span>
+            <div>
+              <h2 class="app-title">Shipping Tracker</h2>
+              <p class="app-description">Add tracking numbers from UPS, FedEx, USPS, DHL and more. Watch animated delivery timelines and get ETA countdowns.</p>
+            </div>
+            <div class="app-apis" aria-label="APIs used">
+              <span class="api-chip">AfterShip API</span>
+              <span class="api-chip">OpenCage Geocoding</span>
+            </div>
+            <span class="app-card-arrow" aria-hidden="true">Open tracker →</span>
+          </a>
+
+          <!-- Shopping Tracker -->
+          <a href="shopping.html" class="app-card app-card-3" role="listitem" aria-label="Open Shopping Tracker">
+            <span class="app-emoji" aria-hidden="true">🛒</span>
+            <div>
+              <h2 class="app-title">Shopping Tracker</h2>
+              <p class="app-description">Build smart shopping lists with product search by name or barcode, price alerts, budget tracking, and currency conversion.</p>
+            </div>
+            <div class="app-apis" aria-label="APIs used">
+              <span class="api-chip">Open Food Facts</span>
+              <span class="api-chip">Exchangerate.host</span>
+            </div>
+            <span class="app-card-arrow" aria-hidden="true">Open tracker →</span>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="features-section" aria-labelledby="features-heading">
+        <p class="section-label" id="features-heading">What's included</p>
+        <div class="features-grid" role="list">
+          <div class="feature-item" role="listitem">
+            <span class="feature-icon" aria-hidden="true">⚡</span>
+            <h3 class="feature-name">Real-time APIs</h3>
+            <p class="feature-desc">Live data from 6 external APIs — movie databases, shipping carriers, product catalogs, and more.</p>
+          </div>
+          <div class="feature-item" role="listitem">
+            <span class="feature-icon" aria-hidden="true">💾</span>
+            <h3 class="feature-name">Persistent Storage</h3>
+            <p class="feature-desc">Everything saves automatically to localStorage. Your data is always there when you return.</p>
+          </div>
+          <div class="feature-item" role="listitem">
+            <span class="feature-icon" aria-hidden="true">🎨</span>
+            <h3 class="feature-name">Smooth Animations</h3>
+            <p class="feature-desc">CSS animations throughout — card reveals, progress bars, toast notifications, and more.</p>
+          </div>
+          <div class="feature-item" role="listitem">
+            <span class="feature-icon" aria-hidden="true">♿</span>
+            <h3 class="feature-name">Fully Accessible</h3>
+            <p class="feature-desc">ARIA labels, keyboard navigation, focus management, skip links, and reduced-motion support.</p>
+          </div>
+          <div class="feature-item" role="listitem">
+            <span class="feature-icon" aria-hidden="true">📱</span>
+            <h3 class="feature-name">Responsive Design</h3>
+            <p class="feature-desc">Works beautifully on any screen size, from mobile phones to wide desktop monitors.</p>
+          </div>
+          <div class="feature-item" role="listitem">
+            <span class="feature-icon" aria-hidden="true">🧩</span>
+            <h3 class="feature-name">ES Modules</h3>
+            <p class="feature-desc">Clean, modular JavaScript with shared utilities, class-based patterns, and zero frameworks.</p>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /.wrapper -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrapper">
+      <p>TrackHub &mdash; Built with HTML, CSS &amp; Vanilla JavaScript &middot; ES Modules &middot; Multiple Real-time APIs</p>
+    </div>
+  </footer>
+
+  <script>
+    // Read localStorage counts and animate them on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      function safeRead(key, fallback = {}) {
+        try { return JSON.parse(localStorage.getItem(key) || '{}'); } catch { return fallback; }
+      }
+
+      const movies    = Object.keys(safeRead('movieTracker_watchlist')).length;
+      const packages  = Object.keys(safeRead('shippingTracker_packages')).length;
+      const items     = Object.keys(safeRead('shoppingTracker_items')).length;
+
+      // Animated count-up
+      function countUp(el, target, duration = 800) {
+        if (target === 0) return;
+        const start = performance.now();
+        const update = (now) => {
+          const pct = Math.min((now - start) / duration, 1);
+          el.textContent = Math.round(pct * target);
+          if (pct < 1) requestAnimationFrame(update);
+          else el.textContent = target;
+        };
+        requestAnimationFrame(update);
+      }
+
+      setTimeout(() => {
+        countUp(document.getElementById('cnt-movies'),   movies);
+        countUp(document.getElementById('cnt-packages'), packages);
+        countUp(document.getElementById('cnt-items'),    items);
+      }, 400);
+    });
+  </script>
+</body>
+</html>

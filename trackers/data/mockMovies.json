@@ -1,0 +1,155 @@
+{
+  "trending": [
+    {
+      "imdbID": "tt15398776",
+      "Title": "Oppenheimer",
+      "Year": "2023",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_SX300.jpg",
+      "imdbRating": "8.3",
+      "Genre": "Biography, Drama, History",
+      "Plot": "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.",
+      "Director": "Christopher Nolan",
+      "Actors": "Cillian Murphy, Emily Blunt, Matt Damon",
+      "Runtime": "180 min",
+      "Released": "21 Jul 2023"
+    },
+    {
+      "imdbID": "tt1517268",
+      "Title": "Barbie",
+      "Year": "2023",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BNjU3N2QxNzYtMjk1NC00MTc4LTk1NTQtMmUxNTljM2I0NDA5XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg",
+      "imdbRating": "6.8",
+      "Genre": "Adventure, Comedy, Fantasy",
+      "Plot": "Barbie and Ken are having the time of their lives in the colorful and seemingly perfect world of Barbie Land. However, when they get a chance to go to the real world, they soon discover the joys and perils of living among humans.",
+      "Director": "Greta Gerwig",
+      "Actors": "Margot Robbie, Ryan Gosling, Issa Rae",
+      "Runtime": "114 min",
+      "Released": "21 Jul 2023"
+    },
+    {
+      "imdbID": "tt9362722",
+      "Title": "Spider-Man: Across the Spider-Verse",
+      "Year": "2023",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMzI0NmVkMjEtYmY4MS00ZDMxLTlkZmEtMzU4MDQxYTMzMjU2XkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_SX300.jpg",
+      "imdbRating": "8.6",
+      "Genre": "Animation, Action, Adventure",
+      "Plot": "Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People charged with protecting its very existence.",
+      "Director": "Joaquim Dos Santos, Kemp Powers, Justin K. Thompson",
+      "Actors": "Shameik Moore, Hailee Steinfeld, Brian Tyree Henry",
+      "Runtime": "140 min",
+      "Released": "02 Jun 2023"
+    },
+    {
+      "imdbID": "tt6718170",
+      "Title": "The Super Mario Bros. Movie",
+      "Year": "2023",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BOTJhNzlmNzctNTU5Yy00N2YwLThhMjQtZDM0YjEzN2Y0ZjNhXkEyXkFqcGdeQXVyMTEwMTQ4MzU5._V1_SX300.jpg",
+      "imdbRating": "7.0",
+      "Genre": "Animation, Adventure, Comedy",
+      "Plot": "A plumber named Mario travels through an underground labyrinth with his brother, Luigi, trying to save a captured princess.",
+      "Director": "Aaron Horvath, Michael Jelenic",
+      "Actors": "Chris Pratt, Anya Taylor-Joy, Charlie Day",
+      "Runtime": "92 min",
+      "Released": "05 Apr 2023"
+    },
+    {
+      "imdbID": "tt1160419",
+      "Title": "Dune: Part Two",
+      "Year": "2024",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BN2QyZGU4ZDctOWMzMy00NTc5LThlOGQtODhmNDI1NmY5YzAwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_SX300.jpg",
+      "imdbRating": "8.7",
+      "Genre": "Action, Adventure, Drama",
+      "Plot": "Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.",
+      "Director": "Denis Villeneuve",
+      "Actors": "Timothée Chalamet, Zendaya, Rebecca Ferguson",
+      "Runtime": "166 min",
+      "Released": "01 Mar 2024"
+    },
+    {
+      "imdbID": "tt14208870",
+      "Title": "The Beekeeper",
+      "Year": "2024",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BYzExNWIxNjQtNzJkOS00ZmFmLWJjNTYtMjQ5YTFlY2E2NWNiXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_SX300.jpg",
+      "imdbRating": "6.4",
+      "Genre": "Action, Thriller",
+      "Plot": "One man's brutal campaign for vengeance takes on national stakes after it's revealed he's a former operative of a powerful and clandestine organization known as Beekeepers.",
+      "Director": "David Ayer",
+      "Actors": "Jason Statham, Emmy Raver-Lampman, Bobby Naderi",
+      "Runtime": "105 min",
+      "Released": "12 Jan 2024"
+    }
+  ],
+  "classics": [
+    {
+      "imdbID": "tt0111161",
+      "Title": "The Shawshank Redemption",
+      "Year": "1994",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_SX300.jpg",
+      "imdbRating": "9.3",
+      "Genre": "Drama",
+      "Plot": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."
+    },
+    {
+      "imdbID": "tt0068646",
+      "Title": "The Godfather",
+      "Year": "1972",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
+      "imdbRating": "9.2",
+      "Genre": "Crime, Drama",
+      "Plot": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."
+    },
+    {
+      "imdbID": "tt0468569",
+      "Title": "The Dark Knight",
+      "Year": "2008",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+      "imdbRating": "9.0",
+      "Genre": "Action, Crime, Drama",
+      "Plot": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice."
+    },
+    {
+      "imdbID": "tt0109830",
+      "Title": "Forrest Gump",
+      "Year": "1994",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+      "imdbRating": "8.8",
+      "Genre": "Drama, Romance",
+      "Plot": "The presidencies of Kennedy and Johnson, the Vietnam War, and other historical events unfold from the perspective of an Alabama man with an IQ of 75."
+    },
+    {
+      "imdbID": "tt0137523",
+      "Title": "Fight Club",
+      "Year": "1999",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BNDIzNDU0YzEtYzE5Ni00ZjlkLTk5ZjgtNjM3NWE4YzA3Nzk3XkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_SX300.jpg",
+      "imdbRating": "8.8",
+      "Genre": "Drama",
+      "Plot": "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more."
+    }
+  ],
+  "sampleWatchlist": [
+    {
+      "imdbID": "tt0816692",
+      "Title": "Interstellar",
+      "Year": "2014",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
+      "status": "watchlist",
+      "addedAt": "2024-02-15T10:30:00.000Z"
+    },
+    {
+      "imdbID": "tt0133093",
+      "Title": "The Matrix",
+      "Year": "1999",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
+      "status": "watched",
+      "addedAt": "2024-02-10T14:20:00.000Z"
+    },
+    {
+      "imdbID": "tt1375666",
+      "Title": "Inception",
+      "Year": "2010",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+      "status": "watched",
+      "addedAt": "2024-02-05T09:15:00.000Z"
+    }
+  ]
+}

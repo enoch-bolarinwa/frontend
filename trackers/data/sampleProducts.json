@@ -1,0 +1,176 @@
+{
+  "groceries": [
+    {
+      "code": "737628064502",
+      "product_name": "Nutella Hazelnut Spread",
+      "brands": "Nutella",
+      "categories_tags": ["spreads", "chocolate"],
+      "image_thumb_url": "https://images.openfoodfacts.org/images/products/073/762/806/4502/front_en.3.100.jpg",
+      "price": 6.99,
+      "weight": "26.5 oz"
+    },
+    {
+      "code": "012000161759",
+      "product_name": "Philadelphia Original Cream Cheese",
+      "brands": "Philadelphia",
+      "categories_tags": ["dairy", "cheese"],
+      "image_thumb_url": "https://images.openfoodfacts.org/images/products/012/000/161/759/front_en.4.100.jpg",
+      "price": 3.49,
+      "weight": "8 oz"
+    },
+    {
+      "code": "028400064422",
+      "product_name": "Cheerios Original",
+      "brands": "General Mills",
+      "categories_tags": ["breakfast", "cereals"],
+      "image_thumb_url": "https://images.openfoodfacts.org/images/products/028/400/064/422/front_en.27.100.jpg",
+      "price": 4.99,
+      "weight": "18 oz"
+    },
+    {
+      "code": "041220976775",
+      "product_name": "Simply Orange Juice",
+      "brands": "Simply",
+      "categories_tags": ["beverages", "juices"],
+      "image_thumb_url": "https://images.openfoodfacts.org/images/products/041/220/976/775/front_en.9.100.jpg",
+      "price": 5.49,
+      "weight": "52 fl oz"
+    },
+    {
+      "code": "070038320487",
+      "product_name": "Barilla Spaghetti",
+      "brands": "Barilla",
+      "categories_tags": ["pasta", "dry-goods"],
+      "image_thumb_url": "https://images.openfoodfacts.org/images/products/070/038/320/487/front_en.3.100.jpg",
+      "price": 2.29,
+      "weight": "16 oz"
+    }
+  ],
+  "health": [
+    {
+      "product_name": "Vitamin D3 5000 IU",
+      "brands": "Nature Made",
+      "categories_tags": ["vitamins", "supplements"],
+      "price": 14.99,
+      "count": "100 softgels"
+    },
+    {
+      "product_name": "Advil Pain Reliever",
+      "brands": "Advil",
+      "categories_tags": ["pain-relief", "medicine"],
+      "price": 8.99,
+      "count": "50 tablets"
+    },
+    {
+      "product_name": "Band-Aid Flexible Fabric",
+      "brands": "Band-Aid",
+      "categories_tags": ["first-aid", "bandages"],
+      "price": 5.49,
+      "count": "30 count"
+    }
+  ],
+  "electronics": [
+    {
+      "product_name": "USB-C to USB-A Cable",
+      "brands": "Anker",
+      "categories_tags": ["cables", "accessories"],
+      "price": 12.99,
+      "specs": "6ft, braided"
+    },
+    {
+      "product_name": "Wireless Mouse",
+      "brands": "Logitech",
+      "categories_tags": ["computer", "peripherals"],
+      "price": 24.99,
+      "specs": "M185, 2.4GHz"
+    },
+    {
+      "product_name": "Power Bank 10000mAh",
+      "brands": "Anker",
+      "categories_tags": ["batteries", "chargers"],
+      "price": 29.99,
+      "specs": "Dual USB ports"
+    }
+  ],
+  "clothing": [
+    {
+      "product_name": "Cotton T-Shirt",
+      "brands": "Hanes",
+      "categories_tags": ["mens", "shirts"],
+      "price": 9.99,
+      "sizes": ["S", "M", "L", "XL"]
+    },
+    {
+      "product_name": "Athletic Socks 6-Pack",
+      "brands": "Nike",
+      "categories_tags": ["athletic", "socks"],
+      "price": 18.99,
+      "sizes": ["M", "L"]
+    },
+    {
+      "product_name": "Blue Jeans",
+      "brands": "Levi's",
+      "categories_tags": ["mens", "pants"],
+      "price": 49.99,
+      "styles": ["slim", "regular", "relaxed"]
+    }
+  ],
+  "home": [
+    {
+      "product_name": "LED Light Bulbs 4-Pack",
+      "brands": "Philips",
+      "categories_tags": ["lighting", "bulbs"],
+      "price": 12.99,
+      "specs": "60W equivalent, daylight"
+    },
+    {
+      "product_name": "Kitchen Towels Set",
+      "brands": "AmazonBasics",
+      "categories_tags": ["kitchen", "textiles"],
+      "price": 14.99,
+      "count": "12 pack"
+    },
+    {
+      "product_name": "Storage Bins 3-Pack",
+      "brands": "Sterilite",
+      "categories_tags": ["storage", "organization"],
+      "price": 19.99,
+      "specs": "16 quart, stackable"
+    }
+  ],
+  "popularSearches": [
+    "organic milk",
+    "greek yogurt",
+    "coffee pods",
+    "protein bars",
+    "laundry detergent",
+    "paper towels",
+    "dish soap",
+    "olive oil",
+    "almond milk",
+    "peanut butter"
+  ],
+  "priceAlertExamples": [
+    {
+      "name": "PlayStation 5",
+      "currentPrice": 499.99,
+      "alertPrice": 449.99,
+      "category": "electronics",
+      "note": "Watch for Black Friday deals"
+    },
+    {
+      "name": "Apple AirPods Pro",
+      "currentPrice": 249.00,
+      "alertPrice": 199.99,
+      "category": "electronics",
+      "note": "Usually drops during Prime Day"
+    },
+    {
+      "name": "Dyson V15 Vacuum",
+      "currentPrice": 649.99,
+      "alertPrice": 499.99,
+      "category": "home",
+      "note": "Memorial Day sale target"
+    }
+  ]
+}

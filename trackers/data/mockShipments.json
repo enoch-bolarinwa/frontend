@@ -1,0 +1,183 @@
+{
+  "activeShipments": [
+    {
+      "id": "pkg_001",
+      "trackingNumber": "1Z999AA10123456784",
+      "carrier": "ups",
+      "label": "New Laptop",
+      "status": "in_transit",
+      "estimatedDelivery": "2024-02-20T18:00:00.000Z",
+      "addedAt": "2024-02-15T10:00:00.000Z",
+      "events": [
+        {
+          "timestamp": "2024-02-17T14:30:00.000Z",
+          "description": "Package arrived at local facility",
+          "location": "Chicago, IL, US"
+        },
+        {
+          "timestamp": "2024-02-16T08:15:00.000Z",
+          "description": "Departed sorting center",
+          "location": "Indianapolis, IN, US"
+        },
+        {
+          "timestamp": "2024-02-15T16:45:00.000Z",
+          "description": "Package received by carrier",
+          "location": "Louisville, KY, US"
+        },
+        {
+          "timestamp": "2024-02-15T10:00:00.000Z",
+          "description": "Order created",
+          "location": "Seller Warehouse, US"
+        }
+      ],
+      "geocode": {
+        "lat": 41.8781,
+        "lng": -87.6298
+      }
+    },
+    {
+      "id": "pkg_002",
+      "trackingNumber": "9405511899223197428490",
+      "carrier": "usps",
+      "label": "Gift for Mom",
+      "status": "out_for_delivery",
+      "estimatedDelivery": "2024-02-18T17:00:00.000Z",
+      "addedAt": "2024-02-12T09:30:00.000Z",
+      "events": [
+        {
+          "timestamp": "2024-02-17T07:00:00.000Z",
+          "description": "Out for delivery",
+          "location": "Chicago, IL, US"
+        },
+        {
+          "timestamp": "2024-02-16T22:15:00.000Z",
+          "description": "Arrived at Post Office",
+          "location": "Chicago, IL 60601, US"
+        },
+        {
+          "timestamp": "2024-02-15T14:30:00.000Z",
+          "description": "In transit to next facility",
+          "location": "Des Plaines, IL, US"
+        },
+        {
+          "timestamp": "2024-02-13T11:20:00.000Z",
+          "description": "Accepted at USPS Origin Facility",
+          "location": "San Francisco, CA, US"
+        }
+      ],
+      "geocode": {
+        "lat": 41.8781,
+        "lng": -87.6298
+      }
+    },
+    {
+      "id": "pkg_003",
+      "trackingNumber": "794655398745",
+      "carrier": "fedex",
+      "label": "Books from Amazon",
+      "status": "delivered",
+      "estimatedDelivery": null,
+      "addedAt": "2024-02-10T15:20:00.000Z",
+      "events": [
+        {
+          "timestamp": "2024-02-14T13:42:00.000Z",
+          "description": "Package delivered — left at front door",
+          "location": "Chicago, IL, US"
+        },
+        {
+          "timestamp": "2024-02-14T09:15:00.000Z",
+          "description": "On FedEx vehicle for delivery",
+          "location": "Chicago, IL, US"
+        },
+        {
+          "timestamp": "2024-02-13T18:30:00.000Z",
+          "description": "At local FedEx facility",
+          "location": "Chicago, IL 60638, US"
+        },
+        {
+          "timestamp": "2024-02-12T14:20:00.000Z",
+          "description": "In transit",
+          "location": "Memphis, TN, US"
+        },
+        {
+          "timestamp": "2024-02-11T08:00:00.000Z",
+          "description": "Picked up",
+          "location": "Seattle, WA, US"
+        }
+      ],
+      "geocode": {
+        "lat": 41.8781,
+        "lng": -87.6298
+      }
+    }
+  ],
+  "carriers": [
+    {
+      "code": "ups",
+      "name": "UPS",
+      "icon": "🟫",
+      "trackingPattern": "^1Z[A-Z0-9]{16}$",
+      "url": "https://www.ups.com/track?tracknum="
+    },
+    {
+      "code": "fedex",
+      "name": "FedEx",
+      "icon": "🟣",
+      "trackingPattern": "^[0-9]{12,14}$",
+      "url": "https://www.fedex.com/fedextrack/?tracknumbers="
+    },
+    {
+      "code": "usps",
+      "name": "USPS",
+      "icon": "🦅",
+      "trackingPattern": "^(94|93|92|94|95)[0-9]{20}$",
+      "url": "https://tools.usps.com/go/TrackConfirmAction?tLabels="
+    },
+    {
+      "code": "dhl",
+      "name": "DHL",
+      "icon": "🟡",
+      "trackingPattern": "^[0-9]{10,11}$",
+      "url": "https://www.dhl.com/en/express/tracking.html?AWB="
+    },
+    {
+      "code": "amazon",
+      "name": "Amazon Logistics",
+      "icon": "📦",
+      "trackingPattern": "^TBA[0-9]{12}$",
+      "url": "https://track.amazon.com/tracking/"
+    }
+  ],
+  "statusCodes": {
+    "pending": {
+      "label": "Pending",
+      "color": "muted",
+      "description": "Carrier has not yet received the package"
+    },
+    "in_transit": {
+      "label": "In Transit",
+      "color": "info",
+      "description": "Package is moving through the carrier network"
+    },
+    "out_for_delivery": {
+      "label": "Out for Delivery",
+      "color": "warning",
+      "description": "Package is on the delivery vehicle"
+    },
+    "delivered": {
+      "label": "Delivered",
+      "color": "success",
+      "description": "Package has been successfully delivered"
+    },
+    "failed_attempt": {
+      "label": "Failed Attempt",
+      "color": "error",
+      "description": "Delivery was attempted but failed"
+    },
+    "exception": {
+      "label": "Exception",
+      "color": "error",
+      "description": "An unexpected issue has occurred"
+    }
+  }
+}

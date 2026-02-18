@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Smart shopping list tracker with product lookup via barcode or name, price alerts, budget tracking, and category filtering.">
+  <meta name="keywords" content="shopping list, price tracker, budget tracker, barcode lookup, grocery list">
+  <meta property="og:title" content="Shopping Tracker — TrackHub">
+  <meta property="og:description" content="Build smart shopping lists with product lookup, price alerts, and budget tracking. Stay on track with every purchase.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#090c14">
+
+  <title>Shopping Tracker — TrackHub</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/shopping.css">
+</head>
+<body>
+
+  <a class="sr-only" href="#main-content"
+     style="position:absolute;top:-40px;left:0;background:var(--clr-accent);color:var(--clr-bg);padding:8px;z-index:9999;border-radius:0 0 4px 0;transition:top 0.2s"
+     onfocus="this.style.top='0'" onblur="this.style.top='-40px'">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="wrapper">
+      <a href="index.html" class="site-logo" aria-label="TrackHub home">Track<span>Hub</span></a>
+      <nav class="site-nav" role="navigation" aria-label="Main navigation">
+        <a href="movie.html"    class="nav-link">🎬 Movies</a>
+        <a href="shipping.html" class="nav-link">📦 Shipping</a>
+        <a href="shopping.html" class="nav-link active" aria-current="page">🛒 Shopping</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="wrapper">
+
+      <!-- Hero -->
+      <section class="page-hero" aria-labelledby="hero-title">
+        <p class="hero-badge" aria-hidden="true">🛒 Shopping Tracker</p>
+        <h1 class="hero-title" id="hero-title">Smart <span class="accent">Shopping</span> Lists</h1>
+        <p class="hero-subtitle">Search products by name or barcode, set price alerts, track your budget — all in one place.</p>
+      </section>
+
+      <!-- Main Layout -->
+      <div class="shopping-layout">
+
+        <!-- Left: Product Search + Add Item Form -->
+        <div>
+          <!-- Product Search Card -->
+          <section class="card product-search-card" aria-labelledby="product-search-heading" style="margin-bottom:var(--space-lg)">
+            <div class="card-header">
+              <div class="card-icon" aria-hidden="true">🔍</div>
+              <div>
+                <h2 class="card-title" id="product-search-heading">Product Lookup</h2>
+                <p class="card-subtitle">Open Food Facts API</p>
+              </div>
+            </div>
+
+            <label for="product-search-input" class="input-label">Search by name or barcode</label>
+            <input
+              type="search"
+              id="product-search-input"
+              class="input-field"
+              placeholder="e.g. Nutella, 737628064502…"
+              autocomplete="off"
+              spellcheck="false"
+              aria-label="Search for a product by name or barcode"
+              aria-describedby="product-search-hint"
+            >
+            <p id="product-search-hint" style="font-size:0.7rem;color:var(--clr-text-muted);margin-top:4px">
+              Type at least 3 characters to search. Barcode scanning supported.
+            </p>
+
+            <!-- Product preview (dynamic) -->
+            <div id="product-preview" class="product-result-preview" role="status" aria-live="polite" aria-label="Product search result"></div>
+          </section>
+
+          <!-- Add Item Form -->
+          <section class="card" aria-labelledby="add-item-heading">
+            <div class="card-header">
+              <div class="card-icon" aria-hidden="true">➕</div>
+              <div>
+                <h2 class="card-title" id="add-item-heading">Add Item</h2>
+                <p class="card-subtitle">With currency via Exchangerate.host</p>
+              </div>
+            </div>
+
+            <form id="add-item-form" novalidate aria-label="Add item to shopping list">
+
+              <!-- Item name -->
+              <div class="input-group stacked" style="margin-bottom:var(--space-md)">
+                <label for="item-name-input" class="input-label">Item Name <abbr title="required">*</abbr></label>
+                <input
+                  type="text"
+                  id="item-name-input"
+                  class="input-field"
+                  placeholder="e.g. Organic Oat Milk"
+                  required
+                  aria-required="true"
+                  maxlength="80"
+                  autocomplete="off"
+                >
+              </div>
+
+              <!-- Price + Qty row -->
+              <div style="display:grid;grid-template-columns:1fr 80px;gap:var(--space-sm);margin-bottom:var(--space-md)">
+                <div>
+                  <label for="item-price-input" class="input-label">Price (USD)</label>
+                  <div class="price-input-wrap">
+                    <span class="price-prefix" aria-hidden="true">$</span>
+                    <input
+                      type="number"
+                      id="item-price-input"
+                      class="input-field price-input"
+                      placeholder="0.00"
+                      min="0"
+                      step="0.01"
+                      aria-label="Item price in USD"
+                    >
+                  </div>
+                </div>
+                <div>
+                  <label for="item-qty-input" class="input-label">Qty</label>
+                  <input
+                    type="number"
+                    id="item-qty-input"
+                    class="input-field"
+                    value="1"
+                    min="1"
+                    max="99"
+                    aria-label="Quantity"
+                  >
+                </div>
+              </div>
+
+              <!-- Category -->
+              <div style="margin-bottom:var(--space-md)">
+                <label for="item-category-select" class="input-label">Category</label>
+                <select id="item-category-select" class="category-select" aria-label="Item category">
+                  <option value="groceries">🛒 Groceries</option>
+                  <option value="electronics">💻 Electronics</option>
+                  <option value="clothing">👕 Clothing</option>
+                  <option value="health">💊 Health</option>
+                  <option value="home">🏠 Home</option>
+                  <option value="other">📦 Other</option>
+                </select>
+              </div>
+
+              <!-- Priority -->
+              <div style="margin-bottom:var(--space-md)">
+                <label for="item-priority-select" class="input-label">Priority</label>
+                <select id="item-priority-select" class="category-select" aria-label="Item priority">
+                  <option value="low">🟢 Low</option>
+                  <option value="medium" selected>🟡 Medium</option>
+                  <option value="high">🔴 High</option>
+                </select>
+              </div>
+
+              <!-- Price Alert -->
+              <div style="margin-bottom:var(--space-md)">
+                <label for="item-alert-input" class="input-label">Price Alert (optional)</label>
+                <div class="price-alert-row">
+                  <div class="price-input-wrap" style="flex:1">
+                    <span class="price-prefix" aria-hidden="true">$</span>
+                    <input
+                      type="number"
+                      id="item-alert-input"
+                      class="input-field price-input"
+                      placeholder="Alert when price drops below…"
+                      min="0"
+                      step="0.01"
+                      aria-label="Price alert threshold in USD"
+                      aria-describedby="alert-hint"
+                    >
+                  </div>
+                </div>
+                <p id="alert-hint" style="font-size:0.7rem;color:var(--clr-text-muted);margin-top:4px">
+                  Get notified when current price is at or below this amount.
+                </p>
+              </div>
+
+              <!-- Note -->
+              <div style="margin-bottom:var(--space-lg)">
+                <label for="item-note-input" class="input-label">Note (optional)</label>
+                <input
+                  type="text"
+                  id="item-note-input"
+                  class="input-field"
+                  placeholder="e.g. Get the 2-pack, check aisle 5…"
+                  maxlength="120"
+                  aria-label="Optional note about this item"
+                >
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg" style="width:100%">
+                ➕ Add to List
+              </button>
+            </form>
+
+            <!-- Budget Setting -->
+            <hr class="divider">
+            <div>
+              <label for="budget-input" class="input-label">Monthly Budget (USD)</label>
+              <div class="price-input-wrap">
+                <span class="price-prefix" aria-hidden="true">$</span>
+                <input
+                  type="number"
+                  id="budget-input"
+                  class="input-field price-input"
+                  min="0"
+                  step="10"
+                  aria-label="Set your monthly shopping budget in USD"
+                  aria-describedby="budget-display"
+                >
+              </div>
+              <div class="budget-bar-wrap" id="budget-display" aria-label="Budget usage progress">
+                <div class="budget-label-row">
+                  <span>Budget used</span>
+                  <span id="budget-remaining" aria-live="polite"></span>
+                </div>
+                <div class="budget-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Budget bar">
+                  <div class="budget-bar-fill" id="budget-fill"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Right: Shopping List Panel -->
+        <section class="shopping-panel" aria-labelledby="shopping-list-heading">
+
+          <!-- Controls -->
+          <div class="list-controls">
+            <h2 class="list-title" id="shopping-list-heading">🛒 My List</h2>
+            <select id="sort-select" class="sort-select" aria-label="Sort shopping list by">
+              <option value="addedAt">Sort: Recent</option>
+              <option value="priority">Sort: Priority</option>
+              <option value="price">Sort: Price</option>
+              <option value="name">Sort: Name</option>
+            </select>
+            <button id="clear-purchased-btn" class="btn btn-secondary btn-sm" aria-label="Clear all purchased items from list">
+              Clear Purchased
+            </button>
+          </div>
+
+          <!-- Category filter tabs (dynamic) -->
+          <div id="category-tabs" class="category-tabs" role="group" aria-label="Filter by category"></div>
+
+          <!-- Summary bar -->
+          <div class="summary-bar" role="region" aria-label="Shopping list summary">
+            <div class="summary-stat">
+              <span class="summary-stat-label">Total Items</span>
+              <span class="summary-stat-value" id="stat-item-count" aria-live="polite">0</span>
+            </div>
+            <div class="summary-stat">
+              <span class="summary-stat-label">List Total</span>
+              <span class="summary-stat-value total-cost" id="stat-total-cost" aria-live="polite">$0.00</span>
+            </div>
+            <div class="summary-stat">
+              <span class="summary-stat-label">Purchased</span>
+              <span class="summary-stat-value saved" id="stat-purchased" aria-live="polite">$0.00</span>
+            </div>
+          </div>
+
+          <!-- Item List (dynamic) -->
+          <ul id="item-list" class="item-list" role="list" aria-label="Shopping items" aria-live="polite" style="margin-top:var(--space-md)"></ul>
+
+          <!-- Empty State -->
+          <div id="list-empty" class="empty-state">
+            <p class="empty-state-icon" aria-hidden="true">🛍️</p>
+            <p class="empty-state-title">Your shopping list is empty</p>
+            <p class="empty-state-text">Search for a product or manually add items using the form to the left.</p>
+          </div>
+
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrapper">
+      <p>TrackHub Shopping Tracker &mdash; Product data by <a href="https://world.openfoodfacts.org/" target="_blank" rel="noopener noreferrer">Open Food Facts</a> &amp; Currency by <a href="https://exchangerate.host/" target="_blank" rel="noopener noreferrer">Exchangerate.host</a></p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/modules/shopping.js"></script>
+</body>
+</html>
